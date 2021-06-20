@@ -17,7 +17,7 @@
 						<table class="table align-items-center mb-0">
 							<thead>
 								<tr>
-									<td>
+									
 									<th class="text-center text-secondary text-xxs font-weight-bolder opacity-7">
 										No</th>
 									<th class="text-uppercase text-center text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
@@ -62,22 +62,21 @@
 								foreach ($tampil->result_array() as $row) {
 
 									echo "<tr>";
-									echo "<td>";
-									echo "<th>" . $i .  "</th>";
-									$id = $row['id_KA'];
-									echo "<td>" . $row['nama_KA'] .  "</td>";
-									echo "<td>" . $row['namakelas'] .  "</td>";
-									echo "<td>" . $row['status'] .  "</td>";
-									echo "<td>" . $row['jumlahkursi'] .  "</td>";
-									echo "<td>" . $row['keterangan'] .  "</td>";
-									echo "<td>"
+									echo '<td class="text-center text-uppercase text-secondary  font-weight-bolder opacity-10">' . $i .  "</th>";
+									echo '<td class="text-center text-uppercase text-secondary  font-weight-bolder opacity-10">' . $row['nama_KA'] .  "</td>";
+									echo '<td class="text-center text-uppercase text-secondary  font-weight-bolder opacity-10">' . $row['namakelas'] .  "</td>";
+									echo '<td class="text-center text-uppercase text-secondary  font-weight-bolder opacity-10">'. $row['status'] .  "</td>";
+									echo '<td class="text-center text-uppercase text-secondary  font-weight-bolder opacity-10">' . $row['jumlahkursi'] .  "</td>";
+									echo '<td class="text-center text-uppercase text-secondary  font-weight-bolder opacity-10">' . $row['keterangan'] .  "</td>";
+									echo '<td class="d-flex justify-content-center font-weight-bolder opacity-10">'
 								?>
 									<?php echo form_open('Admin/Data_ka/hapus'); ?>
 									<a href="<?= base_url('Admin/Data_ka/hapus') ?>">
 										<input type="hidden" name="id" value="<?= $row['id_KA'] ?>">
 
-										<button onclick="return confirm('Anda yakin mau menghapus item ini ?')" class=" btn bg-warning text-white">
+										<button type ="submit" onclick="return confirm('Anda yakin mau menghapus item ini ?')" class=" btn bg-warning text-white m-2">
 											<input type="submit" name="hapus" value="hapus">
+											
 										</button>
 
 									</a>
@@ -86,14 +85,14 @@
 									<?php echo form_open('Admin/Data_ka/edit'); ?>
 									<a href="<?= base_url('Admin/Data_ka/edit') ?>">
 										<input type="hidden" name="id" value="<?= $row['id_KA'] ?>">
-										<button class="btn btn-primary text-white">Edit</button>
+										<button class="btn bg-gradient-secondary m-2">Edit</button>
 									</a>
 									<?php echo form_close(); ?>
 
 									<?php echo form_open('Admin/Data_ka/detail'); ?>
 									<a href="<?= base_url('Admin/Data_ka/detail') ?>">
 										<input type="hidden" name="id" value="<?= $row['id_KA'] ?>">
-										<button class="badge bg-info text-dark" type="submit">Detail</button>
+										<button class="btn bg-gradient-primary m-2" type="submit">Detail</button>
 									</a>
 									<?php echo form_close(); ?>
 

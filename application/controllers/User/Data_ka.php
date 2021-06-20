@@ -24,6 +24,7 @@ class Data_ka extends CI_Controller
     /**
      * Tampil Form Tambah
      */
+    /*
     public function create()
     {
         $this->load->view('templates/header');
@@ -31,7 +32,7 @@ class Data_ka extends CI_Controller
         $this->load->view('User/data_ka/createdata_ka');
         $this->load->view('templates/footer');
     }
-
+    */
     /**
      * Insert ke database
      */

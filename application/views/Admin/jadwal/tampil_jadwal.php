@@ -17,7 +17,6 @@
 						<table class="table align-items-center mb-0">
 							<thead>
 								<tr>
-                                    <td>
 									<th class="text-center text-secondary text-xxs font-weight-bolder opacity-7">
 										No</th>
 									<th class="text-uppercase text-center text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
@@ -31,7 +30,7 @@
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
 										Jam Datang</th>
 									<th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-										Aksi
+										Menu
 									</th>
                                     </td>
 								</tr>
@@ -43,22 +42,21 @@
 								foreach ($tampil->result_array() as $row) {
 
 									echo "<tr>";
-                                    echo "<td>";
-									echo "<th>" . $i .  "</th>";
-									$id = $row['id_jadwal'];
-									echo "<td>" . $row['nama_ka'] .  "</td>";
-									echo "<td>" . $row['st_asal'] .  "</td>";
-									echo "<td>" . $row['st_tujuan'] .  "</td>";
-									echo "<td>" . $row['jamberangkat'] .  "</td>";
-									echo "<td>" . $row['jamdatang'] .  "</td>";
-									echo "<td>"
+									echo '<td class="text-center text-uppercase text-secondary  font-weight-bolder opacity-10">' . $i .  "</th>";
+									echo '<td class="text-center text-uppercase text-secondary  font-weight-bolder opacity-10">' . $row['nama_ka'] .  "</td>";
+									echo '<td class="text-center text-uppercase text-secondary  font-weight-bolder opacity-10">' . $row['st_asal'] .  "</td>";
+									echo '<td class="text-center text-uppercase text-secondary  font-weight-bolder opacity-10">' . $row['st_tujuan'] .  "</td>";
+									echo '<td class="text-center text-uppercase text-secondary  font-weight-bolder opacity-10">' . $row['jamberangkat'] .  "</td>";
+									echo '<td class="text-center text-uppercase text-secondary  font-weight-bolder opacity-10">' . $row['jamdatang'] .  "</td>";
+									echo '<td class="d-flex justify-content-center font-weight-bolder opacity-10">';
 								?>
 									<?php echo form_open('Admin/Jadwal/hapus'); ?>
 									<a href="<?= base_url('Admin/Jadwal/hapus') ?>">
 										<input type="hidden" name="id" value="<?= $row['id_jadwal'] ?>">
 
-										<button onclick="return confirm('Anda yakin mau menghapus item ini ?')" class="btn bg-warning text-white">
-											<input type="submit" name="hapus" value="Hapus">
+										<button type ="submit" onclick="return confirm('Anda yakin mau menghapus item ini ?')" class=" btn bg-warning text-white m-2">
+											<input type="submit" name="hapus" value="hapus">
+											
 										</button>
 
 									</a>
@@ -67,14 +65,14 @@
 									<?php echo form_open('Admin/Jadwal/edit'); ?>
 									<a href="<?= base_url('Admin/Jadwal/edit') ?>">
 										<input type="hidden" name="id" value="<?= $row['id_jadwal'] ?>">
-										<button class="btn bg-gradient-secondary">Edit</button>
+										<button class="btn bg-gradient-secondary m-2">Edit</button>
 									</a>
 									<?php echo form_close(); ?>
 
 									<?php echo form_open('Admin/Jadwal/detail'); ?>
 									<a href="<?= base_url('Admin/Jadwal/detail') ?>">
 										<input type="hidden" name="id" value="<?= $row['id_jadwal'] ?>">
-										<button class="btn bg-gradient-primary" type="submit">Detail</button>
+										<button class="btn bg-gradient-primary m-2" type="submit">Detail</button>
 									</a>
 									<?php echo form_close(); ?>
 

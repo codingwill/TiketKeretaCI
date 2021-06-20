@@ -7,11 +7,13 @@
 						<div class="col-md-6 d-flex align-items-center">
 							<h5 class="mb-0">Data Kereta Api</h5>
 						</div>
+						<!--
 						<div class="col-md-6 text-right">
 							<a class="btn btn-outline-warning btn-sm mb-0"
 								href="<?= base_url('User/Data_ka/create'); ?>"><i
 									class="fas fa-plus"></i>&nbsp;&nbsp;Tambah Data</a>
 						</div>
+						-->
 					</div>
 				</div>
 				<div class="card-body px-0 pt-0 pb-2">
