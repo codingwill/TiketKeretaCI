@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 20, 2021 at 06:41 PM
+-- Generation Time: Jun 24, 2021 at 04:33 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -41,7 +41,7 @@ CREATE TABLE `data_ka` (
 --
 
 INSERT INTO `data_ka` (`id_KA`, `nama_KA`, `kelas`, `status`, `jumlahkursi`, `keterangan`) VALUES
-(5, 'Kereta 1', 'BIS', 'Aktif', 123, 'Tes');
+(9, 'Kereta 1', 'BIS', 'Aktif', 123, 'Tes');
 
 -- --------------------------------------------------------
 
@@ -51,20 +51,21 @@ INSERT INTO `data_ka` (`id_KA`, `nama_KA`, `kelas`, `status`, `jumlahkursi`, `ke
 
 CREATE TABLE `jadwal` (
   `id_jadwal` int(11) NOT NULL,
-  `nama_ka` varchar(50) NOT NULL,
+  `id_KA` int(11) NOT NULL,
   `st_asal` text NOT NULL,
   `st_tujuan` text NOT NULL,
   `jamberangkat` time NOT NULL,
-  `jamdatang` time NOT NULL
+  `jamdatang` time NOT NULL,
+  `sisa_kursi` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `jadwal`
 --
 
-INSERT INTO `jadwal` (`id_jadwal`, `nama_ka`, `st_asal`, `st_tujuan`, `jamberangkat`, `jamdatang`) VALUES
-(2, 'Argo Lawu', 'Madiun', 'Solo Balapan', '14:35:00', '15:44:00'),
-(3, 'Malioboro Express', 'Solo Balapan', 'Yogyakarta', '17:37:00', '18:45:00');
+INSERT INTO `jadwal` (`id_jadwal`, `id_KA`, `st_asal`, `st_tujuan`, `jamberangkat`, `jamdatang`, `sisa_kursi`) VALUES
+(4, 9, 'Magetan', 'Yogyakarta', '07:34:00', '10:34:00', 122),
+(5, 9, 'Magetan', 'Surakarta', '00:04:00', '02:04:00', 123);
 
 -- --------------------------------------------------------
 
@@ -100,18 +101,21 @@ CREATE TABLE `pemesanan` (
   `email` varchar(50) NOT NULL,
   `alamat` varchar(50) NOT NULL,
   `tanggal` date NOT NULL,
-  `nama_ka` varchar(30) NOT NULL
+  `id_KA` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `pemesanan`
 --
 
-INSERT INTO `pemesanan` (`id_pesan`, `nik`, `id_jadwal`, `nama`, `email`, `alamat`, `tanggal`, `nama_ka`) VALUES
+INSERT INTO `pemesanan` (`id_pesan`, `nik`, `id_jadwal`, `nama`, `email`, `alamat`, `tanggal`, `id_KA`) VALUES
 (31, ' 123321', NULL, 'wulan', 'admin@gmail.com', 'Jl Ir.Sutami', '2022-05-23', '2'),
 (32, ' 123321', NULL, 'wulan', 'admin@gmail.com', 'Jl Ir.Sutami', '2021-03-08', 'Munawarman'),
-(33, '3211100103970005', NULL, 'Will', 'willykomara@gmail.com', 'DESA NAGRAK', '2021-06-20', 'Munawarman'),
-(34, '3211100103970005', NULL, 'Will', 'willykomara@gmail.com', 'DESA NAGRAK', '2021-06-20', 'Kereta 1');
+(37, '0000000000000000', NULL, 'Willy User', 'willyuser@gmail.com', 'Jalan Kartika', '2021-06-24', '9'),
+(38, '0000000000000000', NULL, 'Willy User', 'willyuser@gmail.com', 'Bandung', '2021-06-24', '9'),
+(39, '0000000000000000', NULL, 'Willy User', 'willyuser@gmail.com', 'Bandung', '2021-06-24', '9'),
+(40, '0000000000000000', NULL, 'Willy User', 'willyuser@gmail.com', 'DESA NAGRAK', '2021-06-24', '9'),
+(41, '0000000000000000', NULL, 'Willy User', 'willyuser@gmail.com', 'Bandung', '2021-06-19', '4');
 
 -- --------------------------------------------------------
 
@@ -201,7 +205,8 @@ ALTER TABLE `data_ka`
 -- Indexes for table `jadwal`
 --
 ALTER TABLE `jadwal`
-  ADD PRIMARY KEY (`id_jadwal`);
+  ADD PRIMARY KEY (`id_jadwal`),
+  ADD KEY `id_KA_FK` (`id_KA`);
 
 --
 -- Indexes for table `kelaska`
@@ -244,19 +249,19 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT for table `data_ka`
 --
 ALTER TABLE `data_ka`
-  MODIFY `id_KA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_KA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `jadwal`
 --
 ALTER TABLE `jadwal`
-  MODIFY `id_jadwal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_jadwal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `pemesanan`
 --
 ALTER TABLE `pemesanan`
-  MODIFY `id_pesan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id_pesan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `penumpang`
@@ -279,6 +284,12 @@ ALTER TABLE `user_role`
 --
 ALTER TABLE `data_ka`
   ADD CONSTRAINT `data_ka_ibfk_1` FOREIGN KEY (`kelas`) REFERENCES `kelaska` (`idkelas`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Constraints for table `jadwal`
+--
+ALTER TABLE `jadwal`
+  ADD CONSTRAINT `id_KA_FK` FOREIGN KEY (`id_KA`) REFERENCES `data_ka` (`id_KA`);
 
 --
 -- Constraints for table `pemesanan`
