@@ -20,7 +20,7 @@
 
                             <div class="form-group row">
                                 <div class="col-sm-3">
-                                    <?= form_label('NIK', '', 'class="text-muted"') ?>
+                                    <?= form_label('NIK', '', 'class="text-muted" disabled') ?>
                                 </div>
                                 <div class="col-sm-9">
                                     <?= form_input([
@@ -28,7 +28,8 @@
                                         'name' => 'nik',
                                         'id' => 'nik',
                                         'class' => 'form-control',
-                                        'value' => set_value("nik")
+                                        'value' => $nik,
+                                        'disabled' => 'true'
                                     ]);
                                     echo form_error('nik', '<small class="text-danger pl-3">', '</small>'); ?>
 
@@ -36,7 +37,7 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-3">
-                                    <?= form_label('Nama', 'nama', 'class="text-muted"') ?>
+                                    <?= form_label('Nama', 'nama', 'class="text-muted" disabled') ?>
                                 </div>
                                 <div class="col-sm-9">
                                     <?= form_input([
@@ -44,7 +45,8 @@
                                         'name' => 'nama',
                                         'id' => 'nama',
                                         'class' => 'form-control',
-                                        'value' => set_value("nama")
+                                        'value' => $nama,
+                                        'disabled' => 'true'
                                     ]);
                                     echo form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
 
@@ -61,7 +63,8 @@
                                         'name' => 'email',
                                         'id' => 'email',
                                         'class' => 'form-control',
-                                        'value' => set_value("email")
+                                        'value' => $email,
+                                        'disabled' => 'true'
                                     ]);
                                     echo form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
 
@@ -124,7 +127,8 @@
                                     // $nama_ka = set_value('nama_ka');
                                     // echo form_dropdown('nama_ka', $options, $nama_ka);
 
-                                    ?></div>
+                                    ?>
+                                </div>
                             </div>
 
 
