@@ -52,21 +52,23 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
 									
 									<?php
 										$i = 1;
 										//notes
 										//will: retrieve data KA + kelas keretanya
 										foreach ($dataKereta->result_array() as $row) {
+											echo '<tr>';
 											echo '<td class="text-center text-uppercase text-secondary  font-weight-bolder opacity-10">' . $i .  "</td>";
 											echo '<td class="text-center text-uppercase text-secondary  font-weight-bolder opacity-10">' . $row['nama_KA'] .  "</td>";
-											echo '<td class="text-center text-uppercase text-secondary  font-weight-bolder opacity-10">' . $row['kelas'] .  "</td>";
+											echo '<td class="text-center text-uppercase text-secondary  font-weight-bolder opacity-10">' . $row['namakelas'] .  "</td>";
 											echo '<td class="text-center text-uppercase text-secondary  font-weight-bolder opacity-10">' . 
 											($row['status'] == "Aktif" ? '<span class="badge badge-sm bg-gradient-success">Aktif</span>'
 											: '<span class="badge badge-sm bg-gradient-danger">Non-Aktif</span>') .  "</td>";
 											echo '<td class="text-center text-uppercase text-secondary  font-weight-bolder opacity-10">' . $row['jumlahkursi'] .  "</td>";
 											echo '<td class="text-center text-uppercase text-secondary  font-weight-bolder opacity-10">' . $row['keterangan'] .  "</td>";
+											echo '</tr>';
+											++$i;
 										}
 									?>
 									<!--
@@ -83,7 +85,6 @@
 										</form>
 									</td>
 									-->
-								</tr>
 							</tbody>
 						</table>
 					</div>

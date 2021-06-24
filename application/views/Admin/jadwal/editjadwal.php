@@ -1,5 +1,5 @@
 <?php
-foreach ($data as $row) {
+foreach ($data as $data) {
     $_POST['id'];
 ?>
 <div class="container-fluid py-4">
@@ -16,31 +16,57 @@ foreach ($data as $row) {
                 <div class="card z-index-0">
                     <div class="card-body px-4 pt-0 pb-2">
                         <form method="post">
-                            <input type="hidden" name="id" value="<?php echo $row->id_jadwal; ?>" />
+                            <input type="hidden" name="id" value="<?php echo $data->id_jadwal; ?>" />
                             <table width="600" border="0" cellspacing="5" cellpadding="5">
+
+                                
+                                <!--
                                 <tr>
                                     <td width="230">Nama Kereta Api</td>
-                                    <td width="329"><input type="text" class="form-control" name="nama_ka" value="<?php echo $row->nama_ka; ?>" /></td>
+                                    <td width="329"><input type="text" class="form-control" name="nama_ka" value="<?php echo $row->nama_KA; ?>" /></td>
+                                </tr>
+                                -->
+
+                                <div class="form-group row">
+                                    
+                                    <td width="230">Nama Kereta Api</td>
+                                    <td width="329">
+                                        <div class="">
+                                            <?php
+                                            foreach ($query->result_array() as $row) {
+                                                //will's note:
+                                                //ini harusnya yang jadi value ID bukan NAMA KA, karena PK nya ID
+                                                $options[$row['id_KA']] = $row['nama_KA'];
+                                            }
+                                            ?>
+                                            <?= form_dropdown('id_KA', [
+                                                $options
+                                            ], set_value('id_KA'), 'class="form-select" id="id_KA"') ?>
+                                            <?php
+                                                echo form_error('id_KA', '<small class="text-danger pl-3">', '</small>'); 
+                                            ?>
+                                        </div>
+                                    </td>
+                                </div>
+                                
+                                <tr>
+                                    <td width="230">Stasiun Asal</td>
+                                    <td width="329"><input type="text" class="form-control" name="st_asal" value="<?php echo $data->st_asal; ?>" /></td>
                                 </tr>
 
                                 <tr>
-                                    <td width="230">Stasiun Asal</td>
-                                    <td width="329"><input type="text" class="form-control" name="st_asal" value="<?php echo $row->st_asal; ?>" /></td>
-                                </tr>
-
-                                <tr>
-                                    <td width="230">Stasiun Asal</td>
-                                    <td width="329"><input type="text" class="form-control" name="st_tujuan" value="<?php echo $row->st_tujuan; ?>" /></td>
+                                    <td width="230">Stasiun Tujuan</td>
+                                    <td width="329"><input type="text" class="form-control" name="st_tujuan" value="<?php echo $data->st_tujuan; ?>" /></td>
                                 </tr>
 
                                 <tr>
                                     <td width="230">Jam Berangkat </td>
-                                    <td width="329"><input type="time" class="form-control" name="jamberangkat" value="<?php echo $row->jamberangkat; ?>" /></td>
+                                    <td width="329"><input type="time" class="form-control" name="jamberangkat" value="<?php echo $data->jamberangkat; ?>" /></td>
                                 </tr>
 
                                 <tr>
                                     <td width="230">Jam Datang </td>
-                                    <td width="329"><input type="time" class="form-control" name="jamdatang" value="<?php echo $row->jamdatang; ?>" /></td>
+                                    <td width="329"><input type="time" class="form-control" name="jamdatang" value="<?php echo $data->jamdatang; ?>" /></td>
                                 </tr>
 
                                 <tr>

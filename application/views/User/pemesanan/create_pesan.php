@@ -112,7 +112,9 @@
                                 <div class="col-sm-9">
                                     <?php
                                     foreach ($query->result_array() as $row) {
-                                        $options[$row['id_jadwal']] = $row['nama_KA'] . " (" . $row["st_asal"] . " - " . $row["st_tujuan"] . ")"; 
+                                        if ($row["sisa_kursi"] > 0) {
+                                            $options[$row['id_jadwal']] = $row['nama_KA'] . " (" . $row["st_asal"] . " - " . $row["st_tujuan"] . ")"; 
+                                        }
                                     }
                                     ?>
                                     <?= form_dropdown('nama_ka', [

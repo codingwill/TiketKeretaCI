@@ -23,7 +23,6 @@ foreach ($data as $row) {
                 <tr>
                     <td width="230">Stasiun Tujuan</td>
                     <td><?php echo $row->st_tujuan; ?></td>
-
                 </tr>
                 <tr>
                     <td width="230">Jam Berangkat</td>
@@ -33,7 +32,6 @@ foreach ($data as $row) {
                     <td width="230">Jam Datang</td>
                     <td><?php echo $row->jamdatang; ?></td>
                 </tr>
-
                 <tr>
                     <td width="230">Sisa Kursi</td>
                     <td><?php echo $row->sisa_kursi; ?></td>

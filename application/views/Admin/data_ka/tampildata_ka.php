@@ -74,22 +74,18 @@
 										<input type="hidden" name="id" value="<?= $row['id_KA'] ?>">
 										<input onclick="return confirm('Anda yakin mau menghapus item ini ?')" class=" btn bg-warning text-white m-2" type="submit" name="hapus" value="hapus">
 									<?php echo form_close(); ?>
-
 									<?php echo form_open('Admin/Data_ka/edit'); ?>
 									<a href="<?= base_url('Admin/Data_ka/edit') ?>">
 										<input type="hidden" name="id" value="<?= $row['id_KA'] ?>">
 										<button class="btn bg-gradient-secondary m-2">Edit</button>
 									</a>
 									<?php echo form_close(); ?>
-
 									<?php echo form_open('Admin/Data_ka/detail'); ?>
 									<a href="<?= base_url('Admin/Data_ka/detail') ?>">
 										<input type="hidden" name="id" value="<?= $row['id_KA'] ?>">
 										<button class="btn bg-gradient-primary m-2" type="submit">Detail</button>
 									</a>
 									<?php echo form_close(); ?>
-
-
 								<?php
 									"</td>";
 

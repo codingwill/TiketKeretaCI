@@ -64,7 +64,7 @@ class modelJadwal extends CI_Model
     /*Update*/
     function edit($nama_ka, $st_asal, $st_tujuan, $jamberangkat, $jamdatang, $id)
     {
-        $query = $this->db->query("update jadwal SET nama_ka='$nama_ka', st_asal='$st_asal', st_tujuan='$st_tujuan', jamberangkat='$jamberangkat',
+        $query = $this->db->query("update jadwal SET id_KA='$nama_ka', st_asal='$st_asal', st_tujuan='$st_tujuan', jamberangkat='$jamberangkat',
         jamdatang='$jamdatang' where id_jadwal='$id'");
         return $query;
     }
@@ -86,7 +86,18 @@ class modelJadwal extends CI_Model
         $query = "UPDATE jadwal
         SET sisa_kursi = sisa_kursi - 1
         WHERE id_jadwal = $id;";
-        echo $query;
+        //echo $query;
         $this->db->query($query);
+    }
+
+    function getNamaKA($id)
+    {
+        $this->db->select('*');
+        $this->db->from('jadwal');
+        $this->db->join('data_ka', 'data_ka.id_KA = jadwal.id_KA');
+        $this->db->where('id_jadwal', $id);
+        $query = $this->db->get();
+        $result = $query->result_array();
+        return $result[0];
     }
 }

@@ -28,27 +28,26 @@ defined('BASEPATH') or exit('No direct script access allowed');
     </div>
     <div class="container">
         <div class="alert alert-white" role="alert">
-            <p>NIK : <?php echo set_value('nik'); ?></p>
+            <p>NIK: <?php echo set_value('nik'); ?></p>
             <hr>
-            <p class="mb-0">Nama : <?php echo set_value('nama'); ?></p>
+            <p class="mb-0">Nama: <?php echo set_value('nama'); ?></p>
             <hr>
-            <p>Email : <?= set_value('email'); ?></p>
+            <p>Email: <?= set_value('email'); ?></p>
             <hr>
-            <p class="mb-0">Alamat : <?php echo set_value('alamat'); ?></p>
+            <p class="mb-0">Alamat: <?php echo set_value('alamat'); ?></p>
             <hr>
-            <p>Tanggal : <?php echo set_value('tanggal'); ?></p>
+            <p>Tanggal: <?php echo set_value('tanggal'); ?></p>
             <hr>
-            <p class="mb-0">Nama KA : <?php echo set_value('nama_ka'); ?></p>
+            <p class="mb-0">Nama Kereta: <?php echo $nama_jadwal; ?></p>
             <hr>
             <p class="mb-0"></p>
 
         </div>
-        <p><?php echo anchor('user/pemesanan/insert', 'Try it again!'); ?></p>
 
-    </div>
-    <script>
-        window.print();
-    </script>
+        <div class="text-center">
+            <button type="submit" class="btn bg-gradient-warning" onClick="return window.print()">Cetak</button>
+        </div>
+    </div>=
 </body>
 
 </html>

@@ -32,12 +32,13 @@ class Pemesanan extends CI_Controller
             $this->load->view('User/pemesanan/create_pesan', $data);
             $this->load->view('templates/footer');
         } else {
+            
             $data['nik'] = $_POST['nik'];
             $data['nama'] = $_POST['nama'];
             $data['email'] = $_POST['email'];
             $data['alamat'] = $_POST['alamat'];
             $data['tanggal'] = $_POST['tanggal'];
-            $data['nama_ka'] = $_POST['nama_ka'];
+            $data['nama_ka'] = $this->modelJadwal->getNamaKA($_POST['nama_ka']);
             // $data['query'] = $this->modelDataKA->get_all3();
             $this->modelTiket->insert_entry($data);
             // $this->load->view('kereta/formsuccesstiket', $data);
@@ -88,12 +89,22 @@ class Pemesanan extends CI_Controller
             $data['alamat'] = $_POST['alamat'];
             $data['tanggal'] = $_POST['tanggal'];
             $data['id_KA'] = $_POST['nama_ka'];
+            
+            $view['nik'] = $_POST['nik'];
+            $view['nama'] = $_POST['nama'];
+            $view['email'] = $_POST['email'];
+            $view['alamat'] = $_POST['alamat'];
+            $view['tanggal'] = $_POST['tanggal'];
+            $view['id_KA'] = $_POST['nama_ka'];
+            $view['tes'] = "WKWKWK";
+            $result = $this->modelJadwal->getNamaKA($_POST['nama_ka']);
+            $view['nama_jadwal'] = $result['nama_KA'] . " (" . $result['st_asal'] . " - " . $result["st_tujuan"] . ")";
             $this->modelTiket->insert_entry($data);
             $this->modelJadwal->ambilKursi($data['id_KA']);
             //===============
             $this->load->view('templates/header');
             $this->load->view('templates/nav');
-            $this->load->view('User/pemesanan/tampil_pesan', $data);
+            $this->load->view('User/pemesanan/tampil_pesan', $view);
             $this->load->view('templates/footer');
         }
     }

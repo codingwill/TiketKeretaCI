@@ -56,7 +56,7 @@ class Jadwal extends CI_Controller
             $data['sisa_kursi'] = $totalKursi[0]['jumlahkursi'];
 
             $this->modelJadwal->insert_entry($data);
-            $data['tampil'] = $this->modelJadwal->get_all3();
+            $data['tampil'] = $this->modelJadwal->getAllJoinKA();
             $this->load->view('Admin/templates/header');
             $this->load->view('Admin/templates/nav');
             $this->load->view('Admin/jadwal/tampil_jadwal', $data);
@@ -97,13 +97,14 @@ class Jadwal extends CI_Controller
         $id = $_POST['id'];
         //$hasil['query'] = $this->modelJadwal->get_all3();
         $hasil['data'] = $this->modelJadwal->displayEdit($id);
+        $hasil['query'] = $this->modelDataKA->get_all3();
         $this->load->view('Admin/templates/header');
         $this->load->view('Admin/templates/nav');
         $this->load->view('Admin/jadwal/editjadwal', $hasil);
         $this->load->view('Admin/templates/footer');
         if ($this->input->post('edit')) {
             $id = $this->input->post('id');
-            $nama_ka = $this->input->post('nama_ka');
+            $nama_ka = $this->input->post('id_KA');
             $st_asal = $this->input->post('st_asal');
             $st_tujuan = $this->input->post('st_tujuan');
             $jamberangkat = $this->input->post('jamberangkat');

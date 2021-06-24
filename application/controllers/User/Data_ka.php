@@ -13,7 +13,7 @@ class Data_ka extends CI_Controller
     public function index()
     {
         //will
-        $data['dataKereta'] = $this->modelDataKA->get_all2();
+        $data['dataKereta'] = $this->modelDataKA->getAllWithKelas();
         //var_dump($data['dataKereta']);
         $this->load->view('templates/header');
         $this->load->view('templates/nav');

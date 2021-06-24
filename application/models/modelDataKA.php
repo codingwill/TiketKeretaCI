@@ -38,6 +38,17 @@ class modelDataKA extends CI_Model
         // return $query;
     }
 
+    function getAllWithKelas()
+    {
+        $this->db->select('*');
+        $this->db->from('data_ka');
+        $this->db->join('kelaska', 'kelaska.idkelas = data_ka.kelas');
+        
+        //$this->db->join('st_asalka', 'jadwal.st_asal=st_asalka.idst_asal');
+        $query = $this->db->get();
+        return $query;
+    }
+
     public function getKursiByName($id)
     {
         $this->db->select('jumlahkursi');
