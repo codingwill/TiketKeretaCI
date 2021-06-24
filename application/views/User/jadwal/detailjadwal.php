@@ -2,9 +2,10 @@
 foreach ($data as $row) {
 ?>
     <div class="card text-dark bg-light mb-3" style="max-width: 38rem;">
-        <div class="card-header"><h1><?= $row->nama_KA ?></h1></div>
+        <div class="card-header"><h2><?= $row->nama_KA ?></h2></div>
         <div class="card-body">
             <h5 class="card-title">Informasi Jadwal Kereta</h5>
+            <hr>
             <p class="card-text">
             <table>
                 <tr>

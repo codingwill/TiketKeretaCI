@@ -8,7 +8,7 @@ class Pemesanan extends CI_Controller
         parent::__construct();
         $this->load->helper(array('form', 'url'));
         $this->load->library(array('form_validation', 'table'));
-        $this->load->model(array('modelTiket', 'modelDataKA'));
+        $this->load->model(array('modelTiket', 'modelDataKA', 'modelJadwal'));
         $this->load->database();
     }
     public function index()
@@ -23,7 +23,7 @@ class Pemesanan extends CI_Controller
         $this->form_validation->set_rules('tanggal', 'Tanggal Keberangkatan', 'required', array('required' => 'Harus mengisi Tanggal Keberangkatan'));
         $this->form_validation->set_rules('nama_ka', 'Nama KA', 'required', array('required' => 'Harus mengisi Nama KA'));
         if ($this->form_validation->run() == FALSE) {
-            $data['query'] = $this->modelDataKA->KA_aktif();
+            $data['query'] = $this->modelJadwal->getAllJoinKA();
             $data['nik'] = $this->session->userdata('nik');
             $data['email'] = $this->session->userdata('email');
             $data['nama'] = $this->session->userdata('nama');
@@ -69,9 +69,9 @@ class Pemesanan extends CI_Controller
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
 
-        $this->form_validation->set_rules('nik', 'NIK', 'required', array('required' => 'Harus mengisi NIK'));
-        $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required', array('required' => 'Harus mengisi Nama Lengkap'));
-        $this->form_validation->set_rules('email', 'Email', 'required', array('required' => 'Harus mengisi Email'));
+        //$this->form_validation->set_rules('nik', 'NIK', 'required', array('required' => 'Harus mengisi NIK'));
+        //$this->form_validation->set_rules('nama', 'Nama Lengkap', 'required', array('required' => 'Harus mengisi Nama Lengkap'));
+        //$this->form_validation->set_rules('email', 'Email', 'required', array('required' => 'Harus mengisi Email'));
         $this->form_validation->set_rules('alamat', 'Nama Lengkap', 'required', array('required' => 'Harus mengisi Alamat'));
         $this->form_validation->set_rules('tanggal', 'Tanggal Keberangkatan', 'required', array('required' => 'Harus mengisi Tanggal Keberangkatan'));
         $this->form_validation->set_rules('nama_ka', 'Nama KA', 'required', array('required' => 'Harus mengisi Nama KA'));
@@ -79,7 +79,7 @@ class Pemesanan extends CI_Controller
             $data['query'] = $this->modelDataKA->get_all3();
             $this->load->view('templates/header');
             $this->load->view('templates/nav');
-            $this->load->view('User/pemesanan/mytiket', $data);
+            $this->load->view('User/pemesanan/create_pesan', $data);
             $this->load->view('templates/footer');
         } else {
             $data['nik'] = $_POST['nik'];
@@ -87,15 +87,13 @@ class Pemesanan extends CI_Controller
             $data['email'] = $_POST['email'];
             $data['alamat'] = $_POST['alamat'];
             $data['tanggal'] = $_POST['tanggal'];
-            $data['nama_ka'] = $_POST['nama_ka'];
-            // $data['query'] = $this->modelDataKA->get_all3();
+            $data['id_KA'] = $_POST['nama_ka'];
             $this->modelTiket->insert_entry($data);
-            // $this->load->view('kereta/formsuccesstiket', $data);
-            // $this->load->view('User/pemesanan/formsuccesstiket', $data);
+            $this->modelJadwal->ambilKursi($data['id_KA']);
+            //===============
             $this->load->view('templates/header');
             $this->load->view('templates/nav');
             $this->load->view('User/pemesanan/tampil_pesan', $data);
-            // echo $data['nik'];
             $this->load->view('templates/footer');
         }
     }

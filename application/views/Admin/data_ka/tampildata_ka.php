@@ -5,7 +5,7 @@
 				<div class="card-header pb-5">
 					<div class="row">
 						<div class="col-md-6 d-flex align-items-center">
-							<h5 class="mb-0">Data Kereta Api</h5>
+							<h2 class="mb-0">Data Kereta Api</h2>
 						</div>
 						<div class="col-md-6 text-right">
 							<a class="btn btn-outline-warning btn-sm mb-0" href="<?= base_url('Admin/Data_ka/create'); ?>"><i class="fas fa-plus"></i>&nbsp;&nbsp;Tambah Data</a>

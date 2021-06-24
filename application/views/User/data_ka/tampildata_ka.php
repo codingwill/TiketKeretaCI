@@ -5,7 +5,7 @@
 				<div class="card-header pb-5">
 					<div class="row">
 						<div class="col-md-6 d-flex align-items-center">
-							<h5 class="mb-0">Data Kereta Api</h5>
+							<h2 class="mb-0">Data Kereta Api</h2>
 						</div>
 						<!--
 						<div class="col-md-6 text-right">
