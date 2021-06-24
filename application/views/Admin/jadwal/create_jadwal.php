@@ -20,18 +20,34 @@
                         <?php echo form_open('Admin/Jadwal/create'); ?>
                         <div class="form-group row">
                             <div class="col-sm-3">
-                                <?= form_label('Nama Kereta Api', 'nama_ka', 'class="text-muted"') ?>
+                                <?= form_label('Nama Kereta Api', 'id_KA', 'class="text-muted"') ?>
                             </div>
+                            
                             <div class="col-sm-9">
-                                <?= form_input([
-                                    'type' => 'text',
-                                    'name' => 'nama_ka',
-                                    'id' => 'nama_ka',
-                                    'class' => 'form-control',
-                                    'value' => set_value("nama_ka")
-                                ]);
-                                echo form_error('nama_ka', '<small class="text-danger pl-3">', '</small>'); ?>
-                            </div>
+                                    <?php
+                                    foreach ($query->result_array() as $row) {
+                                        //will's note:
+                                        //ini harusnya yang jadi value ID bukan NAMA KA, karena PK nya ID
+                                        $options[$row['id_KA']] = $row['nama_KA'];
+                                    }
+                                    ?>
+                                    <?= form_dropdown('id_KA', [
+                                        $options
+                                    ], set_value('id_KA'), 'class="form-select" id="id_KA"') ?>
+
+                                    
+                                    <?php
+                                    echo form_error('id_KA', '<small class="text-danger pl-3">', '</small>'); 
+                                    // foreach ($query->result_array() as $row) {
+                                    //     $options[$row['nama_KA']] = $row['nama_KA'];
+                                    // }
+                                    // $nama_ka = set_value('nama_ka');
+                                    // echo form_dropdown('nama_ka', $options, $nama_ka);
+
+                                    ?>
+                                </div>
+
+                            
                         </div>
 
                         <div class="form-group row">

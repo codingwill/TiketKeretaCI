@@ -43,7 +43,7 @@
 
 									echo "<tr>";
 									echo '<td class="text-center text-uppercase text-secondary  font-weight-bolder opacity-10">' . $i .  "</th>";
-									echo '<td class="text-center text-uppercase text-secondary  font-weight-bolder opacity-10">' . $row['nama_ka'] .  "</td>";
+									echo '<td class="text-center text-uppercase text-secondary  font-weight-bolder opacity-10">' . $row['nama_KA'] .  "</td>";
 									echo '<td class="text-center text-uppercase text-secondary  font-weight-bolder opacity-10">' . $row['st_asal'] .  "</td>";
 									echo '<td class="text-center text-uppercase text-secondary  font-weight-bolder opacity-10">' . $row['st_tujuan'] .  "</td>";
 									echo '<td class="text-center text-uppercase text-secondary  font-weight-bolder opacity-10">' . $row['jamberangkat'] .  "</td>";
@@ -51,15 +51,9 @@
 									echo '<td class="d-flex justify-content-center font-weight-bolder opacity-10">';
 								?>
 									<?php echo form_open('Admin/Jadwal/hapus'); ?>
-									<a href="<?= base_url('Admin/Jadwal/hapus') ?>">
 										<input type="hidden" name="id" value="<?= $row['id_jadwal'] ?>">
-
-										<button type ="submit" onclick="return confirm('Anda yakin mau menghapus item ini ?')" class=" btn bg-warning text-white m-2">
-											<input type="submit" name="hapus" value="hapus">
-											
+										<input onclick="return confirm('Anda yakin mau menghapus item ini ?')" class=" btn bg-warning text-white m-2" type="submit" name="hapus" value="hapus">
 										</button>
-
-									</a>
 									<?php echo form_close(); ?>
 
 									<?php echo form_open('Admin/Jadwal/edit'); ?>

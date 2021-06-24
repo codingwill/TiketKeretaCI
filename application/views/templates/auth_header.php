@@ -48,11 +48,12 @@
 				<ul class="navbar-nav mx-auto">
 					<li class="nav-item">
 						<a class="nav-link d-flex align-items-center me-2 active" aria-current="page"
-							href="<?= base_url() ?>pages/dashboard.html">
+							href="<?= base_url() ?>#">
 							<i class="fa fa-chart-pie opacity-6  me-1"></i>
 							Dashboard
 						</a>
 					</li>
+					<!--
 					<li class="nav-item">
 						<a class="nav-link me-2"
 							href="<?= base_url() ?>pages/profile.html">
@@ -60,18 +61,19 @@
 							Profile
 						</a>
 					</li>
+					-->
 					<li class="nav-item">
 						<a class="nav-link me-2"
-							href="<?= base_url() ?>pages/sign-up.html">
+							href="<?= base_url() ?>auth/registration">
 							<i class="fas fa-user-circle opacity-6  me-1"></i>
-							Sign Up
+							Daftar
 						</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link me-2"
-							href="<?= base_url() ?>pages/sign-in.html">
+							href="<?= base_url() ?>auth/index">
 							<i class="fas fa-key opacity-6  me-1"></i>
-							Sign In
+							Login
 						</a>
 					</li>
 				</ul>
@@ -86,9 +88,8 @@
 			<div class="container">
 				<div class="row justify-content-center">
 					<div class="col-lg-5 text-center mx-auto">
-						<h1 class="text-white mb-2 mt-5">Welcome!</h1>
-						<p class="text-lead text-white">Use these awesome forms to login or create new account in your
-							project for free.</p>
+						<h1 class="text-white mb-2 mt-5">Selamat Datang!</h1>
+						<p class="text-lead text-white">Silakan login atau mendaftar akun terlebih dahulu, sebelum membeli tiket.</p>
 					</div>
 				</div>
 			</div>

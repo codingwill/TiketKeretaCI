@@ -8,13 +8,13 @@ class Jadwal extends CI_Controller
         parent::__construct();
         $this->load->helper(array('form', 'url'));
         $this->load->library(array('form_validation', 'table'));
-        $this->load->model(array('modelJadwal'));
+        $this->load->model(array('modelDataKA', 'modelJadwal'));
         $this->load->database();
     }
 
     public function index()
     {
-        $data['tampil'] = $this->modelJadwal->get_all3();
+        $data['tampil'] = $this->modelJadwal->getAllJoinKA();
         $this->load->view('Admin/templates/header');
         $this->load->view('Admin/templates/nav');
         $this->load->view('Admin/jadwal/tampil_jadwal', $data);
@@ -29,7 +29,7 @@ class Jadwal extends CI_Controller
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
 
-        $this->form_validation->set_rules('nama_ka', 'Nama Kereta Api', 'required', array('required' => 'Harus mengisi Nama Kereta Api'));
+        $this->form_validation->set_rules('id_KA', 'Nama Kereta Api', 'required', array('required' => 'Harus mengisi Nama Kereta Api'));
         $this->form_validation->set_rules('st_asal', 'Stasiun Asal', 'required', array('required' => 'Harus mengisi Stasiun Asal'));
         $this->form_validation->set_rules('st_tujuan', 'Stasiun Tujuan', 'required', array('required' => 'Harus mengisi Stasiun Tujuan'));
         $this->form_validation->set_rules('jamberangkat', 'Jam Berangkat', 'required', array('required' => 'Harus mengisi Jam Berangkat'));
@@ -37,7 +37,7 @@ class Jadwal extends CI_Controller
 
 
         if ($this->form_validation->run() == FALSE) {
-            $data['query'] = $this->modelJadwal->get_all3();
+            $data['query'] = $this->modelDataKA->KA_aktif();
             // $this->load->view('kereta/myform', $data);
             // $this->load->view('account/tambahKereta', $data);
             $this->load->view('Admin/templates/header');
@@ -45,11 +45,16 @@ class Jadwal extends CI_Controller
             $this->load->view('Admin/jadwal/create_jadwal', $data);
             $this->load->view('Admin/templates/footer');
         } else {
-            $data['nama_ka'] = $_POST['nama_ka'];
+            $data['id_KA'] = (int)$_POST['id_KA'];
             $data['st_asal'] = $_POST['st_asal'];
             $data['st_tujuan'] = $_POST['st_tujuan'];
             $data['jamberangkat'] = $_POST['jamberangkat'];
             $data['jamdatang'] = $_POST['jamdatang'];
+            //note: sisa kursi berdasarkan pemesanan
+            //total kursi dari KA, sisa kursi = totalkursi - jumlah pemesanan
+            $totalKursi = $this->modelDataKA->getKursiByName($data['id_KA']); 
+            $data['sisa_kursi'] = $totalKursi[0]['jumlahkursi'];
+
             $this->modelJadwal->insert_entry($data);
             $data['tampil'] = $this->modelJadwal->get_all3();
             $this->load->view('Admin/templates/header');
@@ -60,7 +65,7 @@ class Jadwal extends CI_Controller
     }
     public function tampilForm()
     {
-        $data['tampil'] = $this->modelJadwal->get_all3();
+        $data['tampil'] = $this->modelJadwal->getAllJoinKA();
         $this->load->view('Admin/templates/header');
         $this->load->view('Admin/templates/nav');
         $this->load->view('Admin/jadwal/tampil_jadwal', $data);

@@ -31,6 +31,19 @@ class modelJadwal extends CI_Model
         // return $query;
     }
 
+    public function getAllJoinKA()
+    {
+        $this->db->select('*');
+        $this->db->from('jadwal');
+        $this->db->join('data_ka', 'data_ka.id_KA = jadwal.id_KA');
+        $query = $this->db->get();
+        return $query;
+        // $this->db->select('nama_ka');
+        // $this->db->from('jadwal');
+        // $query = $this->db->get();
+        // return $query;
+    }
+
     public function tampil_data()
     {
         return $this->db->get('jadwal');
@@ -60,6 +73,9 @@ class modelJadwal extends CI_Model
         $this->db->select('*');
         $this->db->from('jadwal');
         $this->db->where('id_jadwal', $id);
+        $this->db->join('data_ka', 'data_ka.id_KA = jadwal.id_KA');
+        $this->db->join('kelaska', 'kelaska.idkelas = data_KA.kelas');
+        
         //$this->db->join('st_asalka', 'jadwal.st_asal=st_asalka.idst_asal');
         $query = $this->db->get();
         return $query->result();

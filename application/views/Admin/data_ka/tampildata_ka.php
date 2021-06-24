@@ -71,15 +71,8 @@
 									echo '<td class="d-flex justify-content-center font-weight-bolder opacity-10">'
 								?>
 									<?php echo form_open('Admin/Data_ka/hapus'); ?>
-									<a href="<?= base_url('Admin/Data_ka/hapus') ?>">
 										<input type="hidden" name="id" value="<?= $row['id_KA'] ?>">
-
-										<button type ="submit" onclick="return confirm('Anda yakin mau menghapus item ini ?')" class=" btn bg-warning text-white m-2">
-											<input type="submit" name="hapus" value="hapus">
-											
-										</button>
-
-									</a>
+										<input onclick="return confirm('Anda yakin mau menghapus item ini ?')" class=" btn bg-warning text-white m-2" type="submit" name="hapus" value="hapus">
 									<?php echo form_close(); ?>
 
 									<?php echo form_open('Admin/Data_ka/edit'); ?>

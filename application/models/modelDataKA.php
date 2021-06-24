@@ -37,6 +37,16 @@ class modelDataKA extends CI_Model
         // $query = $this->db->get();
         // return $query;
     }
+
+    public function getKursiByName($id)
+    {
+        $this->db->select('jumlahkursi');
+        $this->db->from('data_ka');
+        $this->db->where('id_KA = ' . $id);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     public function KA_aktif()
     {
         $this->db->select('*');

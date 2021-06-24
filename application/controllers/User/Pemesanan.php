@@ -24,6 +24,9 @@ class Pemesanan extends CI_Controller
         $this->form_validation->set_rules('nama_ka', 'Nama KA', 'required', array('required' => 'Harus mengisi Nama KA'));
         if ($this->form_validation->run() == FALSE) {
             $data['query'] = $this->modelDataKA->KA_aktif();
+            $data['nik'] = $this->session->userdata('nik');
+            $data['email'] = $this->session->userdata('email');
+            $data['nama'] = $this->session->userdata('nama');
             $this->load->view('templates/header');
             $this->load->view('templates/nav');
             $this->load->view('User/pemesanan/create_pesan', $data);
