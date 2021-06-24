@@ -80,4 +80,13 @@ class modelJadwal extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+
+    function ambilKursi($id)
+    {
+        $query = "UPDATE jadwal
+        SET sisa_kursi = sisa_kursi - 1
+        WHERE id_jadwal = $id;";
+        echo $query;
+        $this->db->query($query);
+    }
 }
