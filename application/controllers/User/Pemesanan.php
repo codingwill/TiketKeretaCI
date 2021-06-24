@@ -10,6 +10,10 @@ class Pemesanan extends CI_Controller
         $this->load->library(array('form_validation', 'table'));
         $this->load->model(array('modelTiket', 'modelDataKA', 'modelJadwal'));
         $this->load->database();
+        if ($this->session->userdata('role_id') != 2)
+        {
+            redirect('Admin/Dashboard');
+        } 
     }
     public function index()
     {

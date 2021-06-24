@@ -10,6 +10,10 @@ class Jadwal extends CI_Controller
         $this->load->library(array('form_validation', 'table'));
         $this->load->model(array('modelJadwal'));
         $this->load->database();
+        if ($this->session->userdata('role_id') != 2)
+        {
+            redirect('Admin/Jadwal');
+        } 
     }
 
     public function index()

@@ -10,10 +10,16 @@ class Data_ka extends CI_Controller
         $this->load->library(array('form_validation', 'table'));
         $this->load->model(array('modelTiket', 'modelDataKA', 'modelKelas'));
         $this->load->database();
+        
+        if ($this->session->userdata('role_id') != 1)
+        {
+            redirect('User/Data_ka');
+        } 
     }
 
     public function index()
     {
+        
         $data['tampil'] = $this->modelDataKA->get_all2();
         $this->load->view('Admin/templates/header');
         $this->load->view('Admin/templates/nav');

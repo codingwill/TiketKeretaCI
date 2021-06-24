@@ -5,14 +5,20 @@ class Dashboard extends CI_Controller
 {
     public function index()
     {
-        $data['user'] = $this->db->get_where(
-            'user',
-            ['email' => $this->session->userdata('email')]
-        )->row_array();
+        if ($this->session->userdata('role_id') != 1)
+        {
+            redirect('User/Dashboard');
+        } 
+
+        
+        $data['nama'] = $this->session->userdata('nama');
+        $data['email'] = $this->session->userdata('email');
+        $data['nik'] = $this->session->userdata('nik');
+        $data['role'] = $this->session->userdata('role_id');
         // ini ku ganti jadi Admin/template ..
         $this->load->view('Admin/templates/header');
         $this->load->view('Admin/templates/nav');
-        $this->load->view('Admin/index');
+        $this->load->view('Admin/index', $data);
         $this->load->view('Admin/templates/footer');
     }
 }

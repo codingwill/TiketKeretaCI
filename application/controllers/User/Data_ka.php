@@ -8,6 +8,10 @@ class Data_ka extends CI_Controller
         parent::__construct();
         $this->load->model(array('modelDataKA'));
         $this->load->database();
+        if ($this->session->userdata('role_id') != 2)
+        {
+            redirect('User/Data_ka');
+        } 
     }
 
     public function index()
