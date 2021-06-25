@@ -65,7 +65,9 @@
 									echo '<td class="text-center text-uppercase text-secondary  font-weight-bolder opacity-10">' . $i .  "</th>";
 									echo '<td class="text-center text-uppercase text-secondary  font-weight-bolder opacity-10">' . $row['nama_KA'] .  "</td>";
 									echo '<td class="text-center text-uppercase text-secondary  font-weight-bolder opacity-10">' . $row['namakelas'] .  "</td>";
-									echo '<td class="text-center text-uppercase text-secondary  font-weight-bolder opacity-10">'. $row['status'] .  "</td>";
+									echo '<td class="text-center text-uppercase text-secondary  font-weight-bolder opacity-10">' . 
+									($row['status'] == "Aktif" ? '<span class="badge badge-sm bg-gradient-success">Aktif</span>'
+									: '<span class="badge badge-sm bg-gradient-danger">Non-Aktif</span>') .  "</td>";
 									echo '<td class="text-center text-uppercase text-secondary  font-weight-bolder opacity-10">' . $row['jumlahkursi'] .  "</td>";
 									echo '<td class="text-center text-uppercase text-secondary  font-weight-bolder opacity-10">' . $row['keterangan'] .  "</td>";
 									echo '<td class="d-flex justify-content-center font-weight-bolder opacity-10">'
