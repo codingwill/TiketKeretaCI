@@ -70,11 +70,15 @@ class modelDataKA extends CI_Model
     {
         return $this->db->get('data_ka');
     }
+
     public function hapus($id_KA, $table)
     {
         $this->db->where('id_KA', $id_KA);
-        $this->db->delete($table);
-        return true;
+        if ($this->db->delete($table))
+        {
+            return $this->db->error();
+        }
+        return false;
     }
 
     function displayEdit($id)

@@ -79,9 +79,17 @@ class Data_ka extends CI_Controller
         if ($this->input->post('hapus')) {
             $this->input->post('hapus');
             echo "data akan dihapus";
-            $this->modelDataKA->hapus($id, 'data_KA');
-            echo "Data deleted successfully !";
-            redirect(base_url('Admin/Data_ka/tampilForm'));
+            if ($this->modelDataKA->hapus($id, 'data_KA'))
+            {
+                echo "Data berhasil dihapus !";
+                redirect(base_url('Admin/Data_ka/tampilForm'));
+            }
+            else
+            {
+                echo "Data tidak berhasil dihapus!";
+                redirect(base_url('Admin/Data_ka/tampilForm'));
+            }
+            
         } else {
             echo "Error !";
             redirect(base_url('Admin/Data_ka/tampilForm'));
